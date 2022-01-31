@@ -13,9 +13,17 @@ func main() {
 
 	result, err := calculator.Add(2, 2)
 
+	even, evenErr := calculator.GetEvenNumbers(8)
+
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Println(result)
+
+	if evenErr != nil {
+		log.Fatal(evenErr)
+	}
+	fmt.Println("The even numbers are:")
+	fmt.Println(even)
 }
