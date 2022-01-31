@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 type show struct {
@@ -29,10 +30,16 @@ var shows = []show{
 
 func main() {
 	router := gin.Default()
+	router.GET("/ping", ping)
 	router.GET("/shows", getShows)
+	router.GET("/shows/:id", getShowByID)
 	router.POST("/shows", createShows)
 
 	router.Run("localhost:8081")
+}
+
+func ping(c *gin.Context) {
+	c.String(http.StatusOK, "pong")
 }
 
 func getShows(c *gin.Context) {
@@ -48,4 +55,20 @@ func createShows(c *gin.Context) {
 
 	shows = append(shows, newShow)
 	c.IndentedJSON(http.StatusCreated, shows);
+}
+
+func getShowByID(c *gin.Context) {
+	id := c.Param("id")
+
+	for _, a := range shows {
+		convertedId, err := strconv.Atoi(id)
+		if err != nil {
+			c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": err})
+		}
+		if a.ID == convertedId {
+			c.IndentedJSON(http.StatusOK, a)
+			return
+		}
+	}
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "show not found"})
 }
