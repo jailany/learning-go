@@ -11,7 +11,7 @@ func main() {
 	log.SetPrefix("Logger: ")
 	log.SetFlags(0)
 
-	result, err := calculator.Add(8, 0)
+	result, err := calculator.Add(2, 2)
 
 	if err != nil {
 		log.Fatal(err)
