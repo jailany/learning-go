@@ -11,9 +11,9 @@ func main() {
 	log.SetPrefix("Logger: ")
 	log.SetFlags(0)
 
-	result, err := calculator.Add(2, 2)
+	result, err := calculator.Add(8, 2)
 
-	even, evenErr := calculator.GetEvenNumbers(8)
+	even, evenErr := calculator.GetEvenNumbers(10)
 
 	if err != nil {
 		log.Fatal(err)
