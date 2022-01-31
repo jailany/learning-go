@@ -2,10 +2,20 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"module.com/calculator"
 )
 
 func main() {
-	var result = calculator.Add(8, 2)
+
+	log.SetPrefix("Logger: ")
+	log.SetFlags(0)
+
+	result, err := calculator.Add(8, 0)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	fmt.Println(result)
 }
