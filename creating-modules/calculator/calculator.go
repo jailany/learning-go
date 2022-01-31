@@ -16,7 +16,7 @@ func Add(x int, y int) (int, error) {
 		return 0, errors.New("The values passed cannot be 0")
 	}
 	fmt.Sprintf("The numbers are %v and %v", x, y)
-	result := x + y + getARandomNumber()
+	result := x + y
 	return result, nil
 }
 
